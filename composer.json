@@ -1,0 +1,13 @@
+{
+    "name": "damien/slim0319",
+    "description": "Apprentissage Slim",
+    "authors": [
+        {
+            "name": "Damien",
+            "email": "dds21@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.12"
+    }
+}
