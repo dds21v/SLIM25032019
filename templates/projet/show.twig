@@ -1,4 +1,13 @@
 {% extends 'base.twig' %}
 {% block body %}
-    <h1>SHOW</h1>
+    <h1>{{project.name}}</h1>
+    <p class="text-muted">Création: du {{project.startedAt.format('d/m/y')}} au {{project.finishedAt.format('d/m/y à H:i:s')}}</p>
+    <p>{{project.description | raw('html') }}</p>
+
+    <h2>Les langages utilisées</h2>
+    <ul>
+    	{% for language in project['languages'] %}
+    		<li>{{ language }}</li>
+    	{% endfor %}
+    </ul>
 {% endblock %}
