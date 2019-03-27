@@ -4,6 +4,7 @@ use Psr\Container\ContainerInterface;
 use App\Controller\AboutController;
 use App\Controller\ContactController;
 use App\Controller\ProjectController;
+use Twig\Extension\DebugExtension;
 
 // Configuration de twig
 // Get container
@@ -14,10 +15,14 @@ $container = $app->getContainer();
 $container['view'] = function (ContainerInterface $container) {
     $view = new \Slim\Views\Twig(dirname(__DIR__) . '/templates', [
         'cache' => false,
-        'strict_variables'=> true
+        'strict_variables'=> true,
+        'debug' => true
     ]);
 
-    // Instantiate and add Slim specific extension
+    // Ajout de l'extension de debug de TWIG
+    $view->addExtension(new DebugExtension());
+
+    // Instantiate and add Slim specific extension / Extension de base de TWIG
     $router = $container->get('router');
     $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
     $view->addExtension(new Slim\Views\TwigExtension($router, $uri));

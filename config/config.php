@@ -5,7 +5,10 @@ use Generic\Renderer\TwigRenderer;
 // Configuration global de la prod
 return  [
             'settings' => [
-                'displayErrorDetails' => true
+                'displayErrorDetails' => true,
+                "database_name" => "bdd_slimproject",
+                "database_user" => "root",
+                "database_pass" => "",
             ]
         ];
 
