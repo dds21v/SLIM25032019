@@ -42,28 +42,27 @@ $container['view'] = function (ContainerInterface $container) {
 
 // On définit une clef "ProjectController" pour expliquer au conteneur comment instancier "ProjectController"
 // Cette clef sera appelée automatiquement par le routeur
-$container[ProjectController::class] = function(ContainerInterface $container) {
-	// On retourne une instance de ProjectController en "envoyant" TWIG
-	// On obtient TWIG en envoyant la clef "view" du conteneur
-	return new ProjectController($container->get('view'));
+$container[ProjectController::class] = function (ContainerInterface $container) {
+    // On retourne une instance de ProjectController en "envoyant" TWIG
+    // On obtient TWIG en envoyant la clef "view" du conteneur
+    return new ProjectController($container->get('view'));
 };
-$container[ContactController::class] = function(ContainerInterface $container) {
-	return new ContactController($container['view']);
+$container[ContactController::class] = function (ContainerInterface $container) {
+    return new ContactController($container['view']);
 };
 // /////////////////////////////////////////////////////////////////////
-$container[AboutController::class] = function(ContainerInterface $container) {
-	return new AboutController($container['view']);
+$container[AboutController::class] = function (ContainerInterface $container) {
+    return new AboutController($container['view']);
 };
 
 
 
 // Création d'un route
-$app->get('/', function(ServerRequestInterface $request,ResponseInterface $response,?array $args) 
-	{
-	        // On retourne une réponse
+$app->get('/', function (ServerRequestInterface $request, ResponseInterface $response, ?array $args) {
+            // On retourne une réponse
         // return $response->getBody()->write('<h1>Bonjour</h1>');
         return $this->view->render($response, 'home.twig');
-    })->setName("homepage"); 
+})->setName("homepage");
     
     
 // ////////////////////////////////////////////////////////////
@@ -75,7 +74,7 @@ $app->get('/contact', ContactController::class . ':contact')->setName('app_conta
 $app->get('/about', AboutController::class . ':about')->setName('app_about');
 
 
-$app->group('/projet', function() {
+$app->group('/projet', function () {
     // Création d'une page détail des projets
     // Nouveauté: On ajoute une variable dans l'URL avec les accolades
     $this->get("/{id:\d+}", ProjectController::class . ":show")->setName("app_project_show");
