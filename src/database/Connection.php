@@ -1,5 +1,5 @@
 <?php
-namespace Generic\Database;
+namespace App\Database;
 
 /**
  * Class Connection
